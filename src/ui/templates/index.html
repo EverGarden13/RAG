@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG System - Web Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .system-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        .query-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5a6fd8;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .result-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .answer-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .docs-section {
+            margin-top: 1rem;
+        }
+        
+        .doc-item {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+            border-left: 3px solid #28a745;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #667eea;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .history-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Bonus UI Features Styles */
+        .workflow-visualization {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+        }
+        
+        .reasoning-step {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+            position: relative;
+        }
+        
+        .reasoning-step.active {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .reasoning-step.error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-number {
+            background: #17a2b8;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50%;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .step-action {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .step-result {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .sub-queries {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+        }
+        
+        .sub-query-item {
+            background: white;
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 3px;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .retrieval-output {
+            background: #f3e5f5;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+        }
+        
+        .retrieval-item {
+            background: white;
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .confidence-bar {
+            width: 100px;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc3545 0%, #ffc107 50%, #28a745 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .workflow-progress {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            background: #e9ecef;
+            margin: 0 2px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.completed {
+            background: #28a745;
+            color: white;
+        }
+        
+        .progress-step.active {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .toggle-section {
+            margin: 1rem 0;
+        }
+        
+        .toggle-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+        
+        .toggle-btn.active {
+            background: #28a745;
+        }
+        
+        .collapsible-section {
+            margin-top: 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+        
+        .section-header {
+            background: #f8f9fa;
+            padding: 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-content {
+            padding: 1rem;
+            display: none;
+        }
+        
+        .section-content.expanded {
+            display: block;
+        }
+        
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .expand-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .system-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 RAG System</h1>
+            <p>Web Interface for Retrieval-Augmented Generation</p>
+            <div class="system-info">
+                <div class="info-item">
+                    <strong>Status:</strong> {{ system_info.status|title }}
+                </div>
+                {% if system_info.retrieval_method %}
+                <div class="info-item">
+                    <strong>Retrieval:</strong> {{ system_info.retrieval_method }}
+                </div>
+                {% endif %}
+                {% if system_info.generation_model %}
+                <div class="info-item">
+                    <strong>Model:</strong> {{ system_info.generation_model }}
+                </div>
+                {% endif %}
+                <div class="info-item">
+                    <strong>Multi-turn:</strong> {{ 'Enabled' if enable_multi_turn else 'Disabled' }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="query-section">
+                <h2>💬 Ask a Question</h2>
+                
+                <div id="error-message" class="error" style="display: none;"></div>
+                <div id="success-message" class="success" style="display: none;"></div>
+                
+                <form id="query-form">
+                    <div class="form-group">
+                        <label for="query-input">Enter your question:</label>
+                        <textarea id="query-input" name="query" 
+                                placeholder="Type your question here... (e.g., 'What is the capital of France?')" 
+                                required></textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="btn-primary">🔍 Submit Query</button>
+                        <button type="button" id="clear-btn" class="btn-secondary">🧹 Clear</button>
+                        <button type="button" id="example-btn" class="btn-success">📋 Example</button>
+                    </div>
+                </form>
+                
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p id="loading-message">Processing your query...</p>
+                </div>
+                
+                <div id="result-section" class="result-section" style="display: none;">
+                    <h3>💡 Answer</h3>
+                    <div id="answer-box" class="answer-box"></div>
+                    
+                    <div id="docs-section" class="docs-section" style="display: none;">
+                        <h4>📄 Retrieved Documents</h4>
+                        <div id="docs-container"></div>
+                    </div>
+                </div>
+                
+                <!-- Bonus UI Features: Workflow Visualization -->
+                <div id="workflow-section" class="workflow-visualization" style="display: none;">
+                    <h3>🔧 Workflow Visualization</h3>
+                    
+                    <!-- Toggle buttons for different views -->
+                    <div class="toggle-section">
+                        <button class="toggle-btn active" id="toggle-reasoning">🧠 Reasoning Steps</button>
+                        <button class="toggle-btn" id="toggle-retrieval">📚 Retrieval Details</button>
+                        <button class="toggle-btn" id="toggle-subqueries">🔍 Sub-queries</button>
+                    </div>
+                    
+                    <!-- Progress indicator -->
+                    <div id="workflow-progress" class="workflow-progress" style="display: none;">
+                        <h4>Processing Progress</h4>
+                        <div class="progress-steps">
+                            <div class="progress-step" id="step-decompose">Decompose</div>
+                            <div class="progress-step" id="step-retrieve">Retrieve</div>
+                            <div class="progress-step" id="step-generate">Generate</div>
+                            <div class="progress-step" id="step-check">Verify</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reasoning Steps Visualization -->
+                    <div id="reasoning-view" class="collapsible-section">
+                        <div class="section-header" onclick="toggleSection('reasoning-view')">
+                            <span><strong>🧠 Reasoning Steps</strong></span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="section-content expanded" id="reasoning-content">
+                            <div id="reasoning-steps-container">
+                                <!-- Reasoning steps will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sub-queries Visualization -->
+                    <div id="subqueries-view" class="collapsible-section" style="display: none;">
+                        <div class="section-header" onclick="toggleSection('subqueries-view')">
+                            <span><strong>🔍 Query Decomposition</strong></span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="section-content expanded" id="subqueries-content">
+                            <div id="sub-queries-container">
+                                <!-- Sub-queries will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Retrieval Details Visualization -->
+                    <div id="retrieval-view" class="collapsible-section" style="display: none;">
+                        <div class="section-header" onclick="toggleSection('retrieval-view')">
+                            <span><strong>📚 Retrieval Process</strong></span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="section-content expanded" id="retrieval-content">
+                            <div id="retrieval-details-container">
+                                <!-- Retrieval details will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Self-checking Results -->
+                    <div id="selfcheck-view" class="collapsible-section" style="display: none;">
+                        <div class="section-header" onclick="toggleSection('selfcheck-view')">
+                            <span><strong>✅ Self-checking Results</strong></span>
+                            <span class="expand-icon">▼</span>
+                        </div>
+                        <div class="section-content expanded" id="selfcheck-content">
+                            <div id="self-check-container">
+                                <!-- Self-check results will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>📊 Statistics</h3>
+                <div id="stats-container">
+                    <div class="stats-item">
+                        <span>Total Queries:</span>
+                        <span id="query-count">{{ system_info.query_count }}</span>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">📜 Recent Queries</h3>
+                <div id="history-container">
+                    <p>No queries yet.</p>
+                </div>
+                
+                {% if enable_multi_turn %}
+                <h3 style="margin-top: 2rem;">💬 Conversation</h3>
+                <button id="reset-conversation" class="btn-secondary" style="width: 100%;">
+                    🔄 Reset Conversation
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const queryForm = document.getElementById('query-form');
+        const queryInput = document.getElementById('query-input');
+        const clearBtn = document.getElementById('clear-btn');
+        const exampleBtn = document.getElementById('example-btn');
+        const loadingDiv = document.getElementById('loading');
+        const loadingMessage = document.getElementById('loading-message');
+        const resultSection = document.getElementById('result-section');
+        const answerBox = document.getElementById('answer-box');
+        const docsSection = document.getElementById('docs-section');
+        const docsContainer = document.getElementById('docs-container');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        const queryCountSpan = document.getElementById('query-count');
+        const historyContainer = document.getElementById('history-container');
+        
+        const exampleQueries = [
+            "What is the capital of France?",
+            "Who invented the telephone?",
+            "What are the benefits of renewable energy?",
+            "How does machine learning work?",
+            "What is the history of the Internet?"
+        ];
+        
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
+        
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+        
+        function hideMessages() {
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+        }
+        
+        function updateStats() {
+            fetch('/api/system/stats')
+                .then(response => response.json())
+                .then(data => {
+                    queryCountSpan.textContent = data.query_count;
+                })
+                .catch(error => console.error('Error updating stats:', error));
+        }
+        
+        function updateHistory() {
+            fetch('/api/history')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.history.length === 0) {
+                        historyContainer.innerHTML = '<p>No queries yet.</p>';
+                        return;
+                    }
+                    
+                    const historyHtml = data.history.slice(-5).reverse().map(item => `
+                        <div class="history-item">
+                            <strong>Q:</strong> ${item.query.substring(0, 50)}${item.query.length > 50 ? '...' : ''}<br>
+                            <strong>A:</strong> ${item.answer.substring(0, 80)}${item.answer.length > 80 ? '...' : ''}<br>
+                            <small>${new Date(item.timestamp).toLocaleString()}</small>
+                        </div>
+                    `).join('');
+                    
+                    historyContainer.innerHTML = historyHtml;
+                })
+                .catch(error => console.error('Error updating history:', error));
+        }
+        
+        queryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const query = queryInput.value.trim();
+            if (!query) {
+                showError('Please enter a question.');
+                return;
+            }
+            
+            hideMessages();
+            loadingDiv.style.display = 'block';
+            resultSection.style.display = 'none';
+            
+            try {
+                // Use streaming API for real-time updates
+                const response = await fetch('/api/stream_query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: query })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+                    
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            try {
+                                const data = JSON.parse(line.slice(6));
+                                
+                                if (data.status === 'processing') {
+                                    loadingMessage.textContent = data.message;
+                                    updateWorkflowProgress('decompose', 'active');
+                                } else if (data.status === 'decomposing') {
+                                    loadingMessage.textContent = data.message;
+                                    updateWorkflowProgress('decompose', 'active');
+                                } else if (data.status === 'retrieving') {
+                                    loadingMessage.textContent = data.message;
+                                    updateWorkflowProgress('decompose', 'completed');
+                                    updateWorkflowProgress('retrieve', 'active');
+                                } else if (data.status === 'reasoning') {
+                                    loadingMessage.textContent = data.message;
+                                    updateWorkflowProgress('retrieve', 'completed');
+                                    updateWorkflowProgress('generate', 'active');
+                                } else if (data.status === 'checking') {
+                                    loadingMessage.textContent = data.message;
+                                    updateWorkflowProgress('generate', 'completed');
+                                    updateWorkflowProgress('check', 'active');
+                                } else if (data.status === 'generating') {
+                                    loadingMessage.textContent = data.message;
+                                    if (!document.getElementById('step-check').classList.contains('active')) {
+                                        updateWorkflowProgress('retrieve', 'completed');
+                                        updateWorkflowProgress('generate', 'active');
+                                    }
+                                } else if (data.status === 'complete') {
+                                    loadingDiv.style.display = 'none';
+                                    // Complete all workflow steps
+                                    updateWorkflowProgress('check', 'completed');
+                                    displayResult(data.result);
+                                    showSuccess('Query processed successfully!');
+                                    updateStats();
+                                    updateHistory();
+                                } else if (data.status === 'error') {
+                                    loadingDiv.style.display = 'none';
+                                    showError(data.error);
+                                }
+                            } catch (parseError) {
+                                console.error('Error parsing SSE data:', parseError);
+                            }
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                loadingDiv.style.display = 'none';
+                showError('Error processing query: ' + error.message);
+            }
+        });
+        
+        function displayResult(result) {
+            answerBox.textContent = result.answer;
+            resultSection.style.display = 'block';
+            
+            if (result.retrieved_docs && result.retrieved_docs.length > 0) {
+                const docsHtml = result.retrieved_docs.slice(0, 5).map((doc, index) => `
+                    <div class="doc-item">
+                        <strong>Document ${index + 1}</strong><br>
+                        <strong>ID:</strong> ${doc[0]}<br>
+                        <strong>Score:</strong> ${doc[1].toFixed(4)}
+                    </div>
+                `).join('');
+                
+                docsContainer.innerHTML = docsHtml;
+                docsSection.style.display = 'block';
+            } else {
+                docsSection.style.display = 'none';
+            }
+            
+            // Display workflow visualization if metadata is available
+            displayWorkflowVisualization(result);
+        }
+        
+        // Bonus UI Features: Workflow Visualization Functions
+        function displayWorkflowVisualization(result) {
+            const workflowSection = document.getElementById('workflow-section');
+            const metadata = result.metadata || {};
+            
+            // Show workflow section if we have relevant metadata
+            if (metadata.reasoning_steps || metadata.sub_queries || metadata.pipeline_type === 'agentic') {
+                workflowSection.style.display = 'block';
+                
+                // Display reasoning steps
+                if (metadata.reasoning_steps) {
+                    displayReasoningSteps(metadata.reasoning_steps);
+                }
+                
+                // Display sub-queries
+                if (metadata.sub_queries && metadata.sub_queries.length > 0) {
+                    displaySubQueries(metadata.sub_queries);
+                    document.getElementById('subqueries-view').style.display = 'block';
+                }
+                
+                // Display retrieval details
+                displayRetrievalDetails(result.retrieved_docs, metadata);
+                
+                // Display self-checking results
+                if (metadata.confidence !== undefined) {
+                    displaySelfCheckResults(metadata);
+                    document.getElementById('selfcheck-view').style.display = 'block';
+                }
+            } else {
+                workflowSection.style.display = 'none';
+            }
+        }
+        
+        function displayReasoningSteps(reasoningSteps) {
+            const container = document.getElementById('reasoning-steps-container');
+            
+            if (!reasoningSteps || reasoningSteps.length === 0) {
+                container.innerHTML = '<p>No reasoning steps available.</p>';
+                return;
+            }
+            
+            const stepsHtml = reasoningSteps.map((step, index) => {
+                const stepParts = step.split(' - ');
+                const stepDescription = stepParts[0] || step;
+                const stepResult = stepParts[1] || 'Completed';
+                
+                return `
+                    <div class="reasoning-step">
+                        <div class="step-header">
+                            <div>
+                                <span class="step-number">${index + 1}</span>
+                                <span class="step-action">${stepDescription}</span>
+                            </div>
+                        </div>
+                        <div class="step-result">${stepResult}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = stepsHtml;
+        }
+        
+        function displaySubQueries(subQueries) {
+            const container = document.getElementById('sub-queries-container');
+            
+            if (!subQueries || subQueries.length === 0) {
+                container.innerHTML = '<p>No sub-queries generated.</p>';
+                return;
+            }
+            
+            const subQueriesHtml = `
+                <div class="sub-queries">
+                    <h5>Generated Sub-queries:</h5>
+                    ${subQueries.map((query, index) => `
+                        <div class="sub-query-item">
+                            <strong>Sub-query ${index + 1}:</strong> ${query}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            container.innerHTML = subQueriesHtml;
+        }
+        
+        function displayRetrievalDetails(retrievedDocs, metadata) {
+            const container = document.getElementById('retrieval-details-container');
+            
+            if (!retrievedDocs || retrievedDocs.length === 0) {
+                container.innerHTML = '<p>No retrieval details available.</p>';
+                return;
+            }
+            
+            const retrievalHtml = `
+                <div class="retrieval-output">
+                    <h5>Retrieval Process Details:</h5>
+                    <p><strong>Method:</strong> ${metadata.retrieval_method || 'Unknown'}</p>
+                    <p><strong>Documents Retrieved:</strong> ${retrievedDocs.length}</p>
+                    <div style="margin-top: 1rem;">
+                        ${retrievedDocs.slice(0, 10).map((doc, index) => `
+                            <div class="retrieval-item">
+                                <span><strong>Doc ${index + 1}:</strong> ${doc[0]}</span>
+                                <div>
+                                    <span>Score: ${doc[1].toFixed(4)}</span>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" style="width: ${Math.min(doc[1] * 100, 100)}%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = retrievalHtml;
+            document.getElementById('retrieval-view').style.display = 'block';
+        }
+        
+        function displaySelfCheckResults(metadata) {
+            const container = document.getElementById('self-check-container');
+            const confidence = metadata.confidence || 0.5;
+            
+            let assessmentText = 'Unknown';
+            let assessmentColor = '#6c757d';
+            
+            if (confidence > 0.8) {
+                assessmentText = 'High Confidence - Answer well supported';
+                assessmentColor = '#28a745';
+            } else if (confidence > 0.6) {
+                assessmentText = 'Medium Confidence - Answer partially supported';
+                assessmentColor = '#ffc107';
+            } else {
+                assessmentText = 'Low Confidence - Answer may not be well supported';
+                assessmentColor = '#dc3545';
+            }
+            
+            const selfCheckHtml = `
+                <div style="padding: 1rem; background: #f8f9fa; border-radius: 5px;">
+                    <h5>Answer Verification Results:</h5>
+                    <div style="margin: 1rem 0;">
+                        <p><strong>Assessment:</strong> <span style="color: ${assessmentColor};">${assessmentText}</span></p>
+                        <p><strong>Confidence Score:</strong> ${(confidence * 100).toFixed(1)}%</p>
+                        <div class="confidence-bar" style="margin-top: 0.5rem;">
+                            <div class="confidence-fill" style="width: ${confidence * 100}%"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = selfCheckHtml;
+        }
+        
+        // Toggle functions for workflow visualization
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            const icon = section.querySelector('.expand-icon');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.textContent = '▶';
+                icon.classList.remove('rotated');
+            } else {
+                content.classList.add('expanded');
+                icon.textContent = '▼';
+                icon.classList.add('rotated');
+            }
+        }
+        
+        // Update workflow progress visualization
+        function updateWorkflowProgress(stepId, status) {
+            const progressSection = document.getElementById('workflow-progress');
+            const step = document.getElementById(`step-${stepId}`);
+            
+            if (!step) return;
+            
+            // Show progress section if not visible
+            if (progressSection && progressSection.style.display === 'none') {
+                progressSection.style.display = 'block';
+            }
+            
+            // Update step status
+            step.classList.remove('active', 'completed');
+            if (status === 'active') {
+                step.classList.add('active');
+            } else if (status === 'completed') {
+                step.classList.add('completed');
+            }
+        }
+        
+        // Reset workflow progress
+        function resetWorkflowProgress() {
+            const steps = ['decompose', 'retrieve', 'generate', 'check'];
+            steps.forEach(stepId => {
+                const step = document.getElementById(`step-${stepId}`);
+                if (step) {
+                    step.classList.remove('active', 'completed');
+                }
+            });
+            
+            const progressSection = document.getElementById('workflow-progress');
+            if (progressSection) {
+                progressSection.style.display = 'none';
+            }
+        }
+        
+        // Toggle view buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.toggle-btn');
+            
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    toggleButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Hide all views
+                    document.getElementById('reasoning-view').style.display = 'none';
+                    document.getElementById('retrieval-view').style.display = 'none';
+                    document.getElementById('subqueries-view').style.display = 'none';
+                    
+                    // Show selected view
+                    if (this.id === 'toggle-reasoning') {
+                        document.getElementById('reasoning-view').style.display = 'block';
+                    } else if (this.id === 'toggle-retrieval') {
+                        document.getElementById('retrieval-view').style.display = 'block';
+                    } else if (this.id === 'toggle-subqueries') {
+                        document.getElementById('subqueries-view').style.display = 'block';
+                    }
+                });
+            });
+        });
+        
+        clearBtn.addEventListener('click', () => {
+            queryInput.value = '';
+            hideMessages();
+            resultSection.style.display = 'none';
+            document.getElementById('workflow-section').style.display = 'none';
+            resetWorkflowProgress();
+        });
+        
+        exampleBtn.addEventListener('click', () => {
+            const randomExample = exampleQueries[Math.floor(Math.random() * exampleQueries.length)];
+            queryInput.value = randomExample;
+        });
+        
+        {% if enable_multi_turn %}
+        const resetConversationBtn = document.getElementById('reset-conversation');
+        resetConversationBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/conversation/reset', {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    showSuccess('Conversation reset successfully!');
+                } else {
+                    showError('Failed to reset conversation.');
+                }
+            } catch (error) {
+                showError('Error resetting conversation: ' + error.message);
+            }
+        });
+        {% endif %}
+        
+        // Initial load
+        updateStats();
+        updateHistory();
+        
+        // Auto-refresh stats and history every 30 seconds
+        setInterval(() => {
+            updateStats();
+            updateHistory();
+        }, 30000);
+    </script>
+</body>
+</html>

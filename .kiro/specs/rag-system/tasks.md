@@ -1,54 +1,36 @@
 # Implementation Plan
 
 - [x] 1. Set up project structure and data loading
-
-
-
-
-
   - Create directory structure for models, data, retrieval, generation, and UI components
   - Implement HQ-small dataset loading and preprocessing utilities
   - Set up configuration management for models, API keys, and system parameters
   - _Requirements: 8.1, 8.2, 8.3_
 
 - [x] 1.1 Create core data models and interfaces
-
-
   - Define data classes for Query, Document, RetrievalResult, and SystemOutput
   - Implement base interfaces for retrieval and generation components
   - Create configuration classes for system settings and model parameters
   - _Requirements: 7.1, 7.2, 8.4_
 
 - [x] 1.2 Implement dataset loading and document processing
-
-
   - Load HQ-small train, validation, and test splits from HuggingFace
   - Process document collection and create efficient storage format
   - Implement document preprocessing and text cleaning utilities
   - _Requirements: 1.1, 7.3_
 
 - [x] 1.3 Set up logging and error handling framework
-
-
   - Create comprehensive logging system for debugging and monitoring
   - Implement error handling classes and recovery mechanisms
   - Set up performance monitoring and metrics collection
   - _Requirements: 8.5_
 
 - [x] 2. Implement sparse retrieval methods
-
-
-
-
-
   - Implement BM25 retrieval using bm25s library for baseline performance
   - Create TF-IDF retrieval variant with optimized term weighting
   - Build indexing and search utilities for sparse methods
   - _Requirements: 2.1, 2.7_
 
 - [x] 2.1 Create BM25 retrieval implementation
-
-
   - Set up bm25s library integration for document indexing
   - Implement query processing and document scoring for BM25
   - Create efficient storage and loading of BM25 indices
@@ -61,20 +43,13 @@
   - Implement query processing and ranking for TF-IDF retrieval
   - _Requirements: 2.1_
 
-- [x] 3. Implement static embedding retrieval methods  -
-
-
-
-
-
- Integrate Word2Vec and GloVe embeddings using gensim library
+- [x] 3. Implement static embedding retrieval methods
+  - Integrate Word2Vec and GloVe embeddings using gensim library
   - Implement model2vec for efficient static embeddings
   - Create document embedding generation and similarity search
   - _Requirements: 2.2, 2.7_
 
 - [x] 3.1 Set up Word2Vec and GloVe integration
-
-
   - Load pre-trained Word2Vec and GloVe models using gensim
   - Implement document embedding by averaging word vectors
   - Create similarity search using cosine similarity for static embeddings
@@ -88,19 +63,12 @@
   - _Requirements: 2.2_
 
 - [x] 4. Implement dense retrieval with HuggingFace models
-
-
-
-
-
   - Set up sentence-transformers integration for E5, BGE, and GTE models
   - Create document embedding generation pipeline using HuggingFace models
   - Implement FAISS indexing for efficient dense retrieval search
   - _Requirements: 2.3, 2.7_
 
 - [x] 4.1 Create E5 model integration
-
-
   - Load E5-base and E5-large models from HuggingFace using sentence-transformers
   - Generate document embeddings in batches for efficiency
   - Implement query embedding and similarity search for E5 models
@@ -276,13 +244,13 @@
   - Build interactive mode for continuous querying and testing
   - _Requirements: 4.1, 4.2, 4.3, 4.4_
 
-- [ ] 12.2 Build web-based interface
+- [x] 12.2 Build web-based interface
   - Create Flask or Streamlit web application for user interaction
   - Implement clean UI for query input, document display, and answer presentation
   - Set up real-time processing and response streaming
   - _Requirements: 4.1, 4.2, 4.3, 4.4_
 
-- [ ] 12.3 Implement bonus UI features
+- [x] 12.3 Implement bonus UI features
   - Create visualization for intermediate reasoning steps and sub-queries
   - Implement display of retrieval outputs and self-checking results
   - Build workflow visualization showing complete agentic process
@@ -306,7 +274,7 @@
   - Build performance benchmarking and comparison tools
   - _Requirements: 7.5, 11.1_
 
-- [ ] 13.3 Build performance optimization system
+- [x] 13.3 Build performance optimization system
   - Implement hyperparameter tuning for retrieval and generation components
   - Create ablation study framework for component contribution analysis
   - Build optimization pipeline targeting top-tier ranking performance
@@ -357,5 +325,13 @@
 - [ ] 15.3 Generate final submission files
   - Create test_prediction.jsonl file in exact required format
   - Validate output format and ensure all 1052 test queries are processed
-  - Package complete submission with code, report, video, and prediction file
+  - Verify each line contains: id, question, answer, and retrieved_docs with 10 document pairs
   - _Requirements: 7.1, 7.2, 7.5_
+
+- [ ] 16. Create and validate submission package
+  - Create final .zip file with structure: test_prediction.jsonl, code/, Group-X-Report.pdf, Group-X-Video.mp4
+  - Organize code/ directory with all source files, README, and environment setup files
+  - Validate test_prediction.jsonl format and ensure all 1052 test queries are processed
+  - Verify all file formats (PDF, MP4, JSONL) and package structure meet requirements
+  - Test package locally to ensure end-to-end execution works
+  - _Requirements: 7.1, 7.2, 7.5, 8.1, 8.2, 8.3, 8.4, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 10.1, 10.2, 10.3, 10.4, 10.5_

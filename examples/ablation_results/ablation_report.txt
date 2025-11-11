@@ -1,0 +1,53 @@
+ABLATION STUDY REPORT
+================================================================================
+
+BASELINE SYSTEM
+--------------------------------------------------------------------------------
+EM Score: 0.6500
+nDCG Score: 0.7000
+Combined Score: 0.6750
+
+ABLATION EXPERIMENTS
+--------------------------------------------------------------------------------
+
+Experiment: ablate_bm25_retrieval
+Description: System without BM25 sparse retrieval
+Removed: bm25_retrieval
+Results:
+  EM: 0.5500
+  nDCG: 0.6800
+  Combined: 0.6150
+  Impact: -0.0600
+
+Experiment: ablate_dense_retrieval
+Description: System without dense retrieval
+Removed: dense_retrieval
+Results:
+  EM: 0.6000
+  nDCG: 0.6500
+  Combined: 0.6250
+  Impact: -0.0500
+
+Experiment: ablate_multi_turn
+Description: System without multi-turn capability
+Removed: multi_turn
+Results:
+  EM: 0.6400
+  nDCG: 0.6900
+  Combined: 0.6650
+  Impact: -0.0100
+
+COMPONENT IMPORTANCE RANKING
+--------------------------------------------------------------------------------
+1. bm25_retrieval: +0.0600
+2. dense_retrieval: +0.0500
+3. multi_turn: +0.0100
+
+SUMMARY
+--------------------------------------------------------------------------------
+Total experiments: 4
+Validation samples: 10
+
+Best configuration: baseline
+Best score: 0.6750
+Improvement over baseline: +0.0000

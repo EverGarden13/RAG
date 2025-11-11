@@ -217,13 +217,51 @@ def run_batch(args):
         logger.info(f"Evaluation results saved to {eval_file}")
 
 
+def run_web(args):
+    """Run web interface."""
+    logger.info("Starting web interface...")
+    
+    # Setup components
+    retriever = setup_retriever(args)
+    generator = setup_generator(args)
+    pipeline = setup_pipeline(retriever, generator, args)
+    
+    # Import web interface modules
+    if args.web_framework == 'streamlit':
+        from src.ui.web_interface import run_streamlit_app
+        
+        # Set environment variables for Streamlit
+        import os
+        os.environ['STREAMLIT_SERVER_PORT'] = str(args.port)
+        os.environ['STREAMLIT_SERVER_ADDRESS'] = args.host
+        os.environ['STREAMLIT_BROWSER_GATHER_USAGE_STATS'] = 'false'
+        
+        logger.info(f"Starting Streamlit on {args.host}:{args.port}")
+        run_streamlit_app(pipeline)
+        
+    elif args.web_framework == 'flask':
+        from src.ui.flask_interface import create_flask_interface, create_templates_directory
+        
+        # Create templates directory
+        create_templates_directory()
+        
+        # Create Flask interface
+        flask_interface = create_flask_interface(
+            rag_pipeline=pipeline,
+            enable_multi_turn=args.multi_turn
+        )
+        
+        logger.info(f"Starting Flask on {args.host}:{args.port}")
+        flask_interface.run(host=args.host, port=args.port, debug=False)
+
+
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="RAG System CLI")
     
     # Mode
-    parser.add_argument('--mode', choices=['interactive', 'batch'], default='interactive',
-                       help='Run mode: interactive or batch')
+    parser.add_argument('--mode', choices=['interactive', 'batch', 'web'], default='interactive',
+                       help='Run mode: interactive, batch, or web')
     
     # Retrieval
     parser.add_argument('--retrieval-method', default='bm25',
@@ -243,6 +281,14 @@ def main():
     # Multi-turn
     parser.add_argument('--multi-turn', action='store_true',
                        help='Enable multi-turn conversation')
+    
+    # Web interface
+    parser.add_argument('--web-framework', choices=['streamlit', 'flask'], default='streamlit',
+                       help='Web framework for web mode')
+    parser.add_argument('--host', default='localhost',
+                       help='Host address for web interface')
+    parser.add_argument('--port', type=int, default=8501,
+                       help='Port for web interface')
     
     # Batch processing
     parser.add_argument('--split', default='validation',
@@ -267,6 +313,8 @@ def main():
             run_interactive(args)
         elif args.mode == 'batch':
             run_batch(args)
+        elif args.mode == 'web':
+            run_web(args)
     except KeyboardInterrupt:
         logger.info("\nInterrupted by user")
         sys.exit(0)

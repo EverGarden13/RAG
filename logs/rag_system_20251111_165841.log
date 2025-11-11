@@ -1,0 +1,216 @@
+2025-11-11 16:58:41 - root - [32mINFO[0m - setup_logging:99 - Logging initialized - Level: INFO
+2025-11-11 16:58:41 - root - [32mINFO[0m - setup_logging:101 - Log file: ./logs\rag_system_20251111_165841.log
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:240 - OPTIMIZATION SYSTEM EXAMPLES
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:241 - ============================================================
+
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:24 - ============================================================
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:25 - EXAMPLE: Hyperparameter Tuning
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:26 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - __init__:71 - Hyperparameter tuner initialized with 10 validation samples
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:91 - 
+Running grid search...
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:85 - Starting grid search...
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:86 - Parameter spaces: ['k_retrieve', 'temperature', 'fusion_method']
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:95 - Limiting to 10 random combinations out of 36
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:99 - Testing 10 parameter combinations
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 1/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 100, 'temperature': 0.2, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.7401, nDCG=0.7991, Combined=0.7365
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 2/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 50, 'temperature': 0.3, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.5007, nDCG=0.4599, Combined=0.5095
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 3/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 150, 'temperature': 0.2, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.8657, nDCG=0.7260, Combined=0.7911
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 4/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 50, 'temperature': 0.1, 'fusion_method': 'weighted'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.5618, nDCG=0.5956, Combined=0.5506
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 5/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 100, 'temperature': 0.3, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.6796, nDCG=0.6700, Combined=0.6463
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 6/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 100, 'temperature': 0.1, 'fusion_method': 'weighted'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.6936, nDCG=0.7091, Combined=0.7307
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 7/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 50, 'temperature': 0.3, 'fusion_method': 'combsum'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.4596, nDCG=0.5379, Combined=0.5068
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 8/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 150, 'temperature': 0.2, 'fusion_method': 'weighted'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.8093, nDCG=0.7456, Combined=0.7371
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 9/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 150, 'temperature': 0.0, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.8706, nDCG=1.0128, Combined=0.9428
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:106 - Combination 10/10
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:107 - Parameters: {'k_retrieve': 100, 'temperature': 0.0, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:123 - Results: EM=0.8019, nDCG=0.8184, Combined=0.8156
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:132 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:133 - GRID SEARCH COMPLETE
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:134 - Best parameters: {'k_retrieve': 150, 'temperature': 0.0, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:135 - Best combined score: 0.9428
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - grid_search:136 - ============================================================
+
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - _save_results:309 - Results saved to examples\tuning_results\grid_search_results.json
+2025-11-11 16:58:41 - src.optimization.hyperparameter_tuner - [32mINFO[0m - _save_results:325 - Summary saved to examples\tuning_results\grid_search_summary.txt
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:94 - 
+Best parameters found:
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:95 -   {'k_retrieve': 150, 'temperature': 0.0, 'fusion_method': 'rrf'}
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:96 -   Combined score: 0.9428
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:100 - 
+Top 3 configurations:
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:102 -   1. {'k_retrieve': 150, 'temperature': 0.0, 'fusion_method': 'rrf'} -> 0.9428
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:102 -   2. {'k_retrieve': 100, 'temperature': 0.0, 'fusion_method': 'rrf'} -> 0.8156
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_hyperparameter_tuning:102 -   3. {'k_retrieve': 150, 'temperature': 0.2, 'fusion_method': 'rrf'} -> 0.7911
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:107 - 
+============================================================
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:108 - EXAMPLE: Ablation Study
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:109 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - __init__:52 - Ablation study framework initialized with 10 validation samples
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:130 - 
+Running baseline...
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:61 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:62 - RUNNING BASELINE SYSTEM
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:63 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:79 - Baseline Results:
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:80 -   EM: 0.6500
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:81 -   nDCG: 0.7000
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:82 -   Combined: 0.6750
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - run_baseline:83 - ============================================================
+
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:134 - 
+Ablating components...
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:106 - ABLATING: bm25_retrieval
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:107 - Description: System without BM25 sparse retrieval
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:130 - Results:
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:131 -   EM: 0.5500 (£G -0.1000)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:132 -   nDCG: 0.6800 (£G -0.0200)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:133 -   Combined: 0.6150 (£G -0.0600)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:136 -   Impact: SIGNIFICANT NEGATIVE (component is important)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:146 - ============================================================
+
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:106 - ABLATING: dense_retrieval
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:107 - Description: System without dense retrieval
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:130 - Results:
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:131 -   EM: 0.6000 (£G -0.0500)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:132 -   nDCG: 0.6500 (£G -0.0500)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:133 -   Combined: 0.6250 (£G -0.0500)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:136 -   Impact: SIGNIFICANT NEGATIVE (component is important)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:146 - ============================================================
+
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:105 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:106 - ABLATING: multi_turn
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:107 - Description: System without multi-turn capability
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:108 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:130 - Results:
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:131 -   EM: 0.6400 (£G -0.0100)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:132 -   nDCG: 0.6900 (£G -0.0100)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:133 -   Combined: 0.6650 (£G -0.0100)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:136 -   Impact: SIGNIFICANT NEGATIVE (component is important)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - ablate_component:146 - ============================================================
+
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:167 - 
+Analyzing component importance...
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:292 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:293 - COMPONENT IMPORTANCE ANALYSIS
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:294 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:297 - bm25_retrieval: +0.0600 (CRITICAL)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:297 - dense_retrieval: +0.0500 (CRITICAL)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:297 - multi_turn: +0.0100 (MODERATE)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:298 - ============================================================
+
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:171 - 
+Generating report...
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:292 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:293 - COMPONENT IMPORTANCE ANALYSIS
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:294 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:297 - bm25_retrieval: +0.0600 (CRITICAL)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:297 - dense_retrieval: +0.0500 (CRITICAL)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:297 - multi_turn: +0.0100 (MODERATE)
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - analyze_component_importance:298 - ============================================================
+
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - generate_report:372 - Ablation report saved to examples\ablation_results\ablation_report.txt
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - generate_report:392 - Ablation results saved to examples\ablation_results\ablation_results.json
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_ablation_study:173 - Report saved to: examples\ablation_results\ablation_report.txt
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_parameter_comparison:178 - 
+============================================================
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_parameter_comparison:179 - EXAMPLE: Parameter Configuration Comparison
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_parameter_comparison:180 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - __init__:52 - Ablation study framework initialized with 10 validation samples
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_parameter_comparison:233 - 
+Comparing variants...
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:223 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:224 - COMPARING 3 VARIANTS
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:225 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:230 - 
+Evaluating variant: conservative
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:231 - Configuration: {'temperature': 0.0, 'k_retrieve': 50, 'fusion': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:248 - Results: EM=0.6267, nDCG=0.6927, Combined=0.6597
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:230 - 
+Evaluating variant: balanced
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:231 - Configuration: {'temperature': 0.1, 'k_retrieve': 100, 'fusion': 'rrf'}
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:248 - Results: EM=0.6396, nDCG=0.7070, Combined=0.6733
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:230 - 
+Evaluating variant: aggressive
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:231 - Configuration: {'temperature': 0.3, 'k_retrieve': 200, 'fusion': 'combsum'}
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:248 - Results: EM=0.6300, nDCG=0.6963, Combined=0.6631
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:257 - 
+============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:258 - VARIANT RANKING
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:259 - ============================================================
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:261 - 1. variant_balanced: 0.6733
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:261 - 2. variant_aggressive: 0.6631
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:261 - 3. variant_conservative: 0.6597
+2025-11-11 16:58:41 - src.optimization.ablation_study - [32mINFO[0m - compare_variants:262 - ============================================================
+
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - example_parameter_comparison:236 - 
+Comparison complete. 3 variants evaluated.
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:248 - 
+============================================================
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:249 - ALL EXAMPLES COMPLETE
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:250 - ============================================================
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:251 - 
+Check the ./examples/ directory for results:
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:252 -   - tuning_results/
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:253 -   - ablation_results/
+2025-11-11 16:58:41 - __main__ - [32mINFO[0m - <module>:254 -   - comparison_results/

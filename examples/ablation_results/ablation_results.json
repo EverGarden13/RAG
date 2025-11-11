@@ -1,0 +1,50 @@
+[
+  {
+    "experiment_name": "baseline",
+    "description": "Full system with all components enabled",
+    "em_score": 0.65,
+    "ndcg_score": 0.7,
+    "combined_score": 0.675,
+    "components_removed": [],
+    "components_modified": {},
+    "metadata": {
+      "is_baseline": true
+    }
+  },
+  {
+    "experiment_name": "ablate_bm25_retrieval",
+    "description": "System without BM25 sparse retrieval",
+    "em_score": 0.55,
+    "ndcg_score": 0.68,
+    "combined_score": 0.615,
+    "components_removed": [
+      "bm25_retrieval"
+    ],
+    "components_modified": {},
+    "metadata": {}
+  },
+  {
+    "experiment_name": "ablate_dense_retrieval",
+    "description": "System without dense retrieval",
+    "em_score": 0.6,
+    "ndcg_score": 0.65,
+    "combined_score": 0.625,
+    "components_removed": [
+      "dense_retrieval"
+    ],
+    "components_modified": {},
+    "metadata": {}
+  },
+  {
+    "experiment_name": "ablate_multi_turn",
+    "description": "System without multi-turn capability",
+    "em_score": 0.64,
+    "ndcg_score": 0.69,
+    "combined_score": 0.665,
+    "components_removed": [
+      "multi_turn"
+    ],
+    "components_modified": {},
+    "metadata": {}
+  }
+]

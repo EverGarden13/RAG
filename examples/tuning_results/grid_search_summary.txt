@@ -1,0 +1,33 @@
+Hyperparameter Tuning Results - grid_search
+============================================================
+
+Rank 1:
+  Parameters: {'k_retrieve': 150, 'temperature': 0.0, 'fusion_method': 'rrf'}
+  EM: 0.8706
+  nDCG: 1.0128
+  Combined: 0.9428
+
+Rank 2:
+  Parameters: {'k_retrieve': 100, 'temperature': 0.0, 'fusion_method': 'rrf'}
+  EM: 0.8019
+  nDCG: 0.8184
+  Combined: 0.8156
+
+Rank 3:
+  Parameters: {'k_retrieve': 150, 'temperature': 0.2, 'fusion_method': 'rrf'}
+  EM: 0.8657
+  nDCG: 0.7260
+  Combined: 0.7911
+
+Rank 4:
+  Parameters: {'k_retrieve': 150, 'temperature': 0.2, 'fusion_method': 'weighted'}
+  EM: 0.8093
+  nDCG: 0.7456
+  Combined: 0.7371
+
+Rank 5:
+  Parameters: {'k_retrieve': 100, 'temperature': 0.2, 'fusion_method': 'rrf'}
+  EM: 0.7401
+  nDCG: 0.7991
+  Combined: 0.7365
+
